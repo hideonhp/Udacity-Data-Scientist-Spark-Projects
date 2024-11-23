@@ -72,6 +72,97 @@ Explorations and pilot modeling were conducted using an initial sample of data (
 ## 5. Final Model
 Reason for Selection: Based on the evaluation metrics, the Random Forest model is selected as the final model due to its superior test accuracy (75.0%) and reasonable generalization performance. It balances predictive power with fast prediction times.
 
+### 5.1 Extract and Analyze Final Model Parameters
+Below is a description of each parameter and how it affects the model's functionality:
+
+- Number of Trees: 20
+  - This specifies the number of decision trees in the Random Forest ensemble.
+  - **Significance**: A larger number of trees can improve stability and accuracy by reducing variance. However, it increases computational time. For this dataset, 20 trees provided a good balance between performance and efficiency.
+
+- Max Depth: 5
+  - This limits the maximum depth of each decision tree.
+  - **Significance**: A depth of 5 prevents overfitting by restricting the complexity of the trees, ensuring that the model generalizes well to unseen data.
+
+- Max Features: auto
+  - This determines the number of features considered for splitting at each tree node.
+  - **Significance**: The auto setting lets the model automatically select an optimal subset of features, balancing randomness and predictive power.
+
+- Min Instances Per Node: 1
+  - This sets the minimum number of data instances required to split a node.
+  - **Significance**: A value of 1 allows the trees to grow fully to their maximum depth but may risk overfitting in some cases. In this scenario, it works well with the limited depth of 5.
+
+### 5.2 Impact of Parameters on Performance
+Analysis and Insights:
+- Max Depth:
+  - Tested Value: 5
+  - Impact on Performance: The model with a max depth of 5 gives a moderate performance with an accuracy of 72.4% and an F1 score of 0.61. This indicates that limiting the depth of trees helps reduce overfitting and keeps the model generalizable.
+  - Reasoning: A smaller max depth restricts the complexity of each decision tree, preventing overfitting. The performance here suggests that a depth of 5 strikes a balance between capturing patterns and maintaining simplicity.
+
+- Number of Trees:
+  - Tested Value: 50
+  - Impact on Performance: Increasing the number of trees to 50 improves the model's accuracy to 75.0% and the F1 score to 0.64. The increase in performance highlights the importance of ensemble learning in random forests, where adding more trees helps reduce variance and improve predictions.
+  - Reasoning: More trees generally improve model performance by averaging out predictions, but they also come with an increased computational cost. In this case, 50 trees offered a good performance boost with manageable computation.
+ 
+### 5.3 Model Robustness Assessment with Cross-Validation
+
+#### Cross-Validation Results
+To assess the robustness of our Random Forest model, we performed cross-validation to fine-tune its hyperparameters. The 5-fold cross-validation yielded the following results:
+
+- Average Accuracy from Cross-Validation: 0.7588 (75.88%)
+  - This indicates that, on average, the model performs consistently well across different subsets of the data.
+- Best Hyperparameters from Cross-Validation:
+  - Number of Trees: 100
+  - Max Depth: 5
+
+These results suggest that 100 trees and a max depth of 5 yield the best trade-off between performance and model complexity.
+
+#### Impact of Parameters on Performance
+The following table summarizes the performance of the model with different values for the hyperparameters Max Depth and Number of Trees during cross-validation:
+
+| **Parameter**    | **Value Tested** | **Accuracy** | **F1 Score** |
+|------------------|------------------|--------------|--------------|
+| Max Depth        | 5                | 0.724        | 0.61         |
+| Number of Trees  | 50               | 0.750        | 0.64         |
+| Number of Trees  | 100              | **0.7588**   | **0.66**     |
+
+> Number of Trees: Increasing the number of trees to 100 significantly improved model performance compared to using a smaller number of trees (such as 20 or 50). A higher number of trees generally increases the model's ability to capture complex patterns but can also lead to longer training times.
+
+> Max Depth: A Max Depth of 5 proved to be the optimal balance for preventing overfitting. A deeper tree would have allowed the model to capture more complex relationships in the data but could have led to overfitting. A smaller depth might have underfit the model, so 5 provided a reasonable trade-off.
+
+#### Conclusion
+
+The cross-validation results confirm that the optimal hyperparameters for the Random Forest model are:
+
+- Number of Trees: 100
+- Max Depth: 5
+
+This combination of hyperparameters has achieved a solid performance with an accuracy of 75.88%, making it a robust and reliable model for predicting the target variable. The next step is to evaluate this final model on the test data to confirm its generalization performance.
+
+### 5.4 Detailed Evaluation of the Final Model
+Final Model Parameters:
+- Number of Trees: 100
+- Max Depth: 5
+
+Parameter Impact:
+- Number of Trees (100):
+  - Significance: More trees reduce variance and improve stability, but beyond a certain point, gains are minimal.
+  - Impact on Performance: Increasing from 50 to 100 improved accuracy and F1 score. More trees help reduce overfitting and provide better generalization.
+  - Trade-off: A larger number of trees increases computation time but improves performance.
+
+- Max Depth (5):
+  - Significance: Limits tree growth to prevent overfitting. Deeper trees capture more complexity but may overfit.
+  - Impact on Performance: Max depth of 5 strikes a balance between capturing patterns and avoiding overfitting.
+  - Trade-off: A deeper tree may improve performance, but it risks overfitting, so 5 is chosen to maintain generalization.
+
+Model Selection Justification:
+
+- Accuracy vs. F1 Score: The final model (100 trees, max depth 5) provides a solid balance between accuracy (0.7588) and F1 score (0.64).
+- Cross-validation confirmed that these parameters minimize overfitting while maximizing performance.
+
+Conclusion:
+
+The Random Forest model with 100 trees and a max depth of 5 delivers the best performance and generalization. This setup provides a good balance of complexity and accuracy, with minimal overfitting risk.
+
 ## 6. Model Comparison and Final Evaluation after Hypertuning with Grid Search
 
 | Model                     | Accuracy | F1 Score | Training Time (s) | Prediction Time (s) |
