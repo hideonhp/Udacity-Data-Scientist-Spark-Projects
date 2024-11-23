@@ -69,11 +69,37 @@ Explorations and pilot modeling were conducted using an initial sample of data (
 
 ![Visualize Feature Importance](Visualize_feature_importance.png)
 
-## 5. Installation
+## 5. Final Model
+Reason for Selection: Based on the evaluation metrics, the Random Forest model is selected as the final model due to its superior test accuracy (75.0%) and reasonable generalization performance. It balances predictive power with fast prediction times.
+
+## 6. Model Comparison and Final Evaluation after Hypertuning with Grid Search
+
+| Model                     | Accuracy | F1 Score | Training Time (s) | Prediction Time (s) |
+|---------------------------|----------|----------|-------------------|---------------------|
+| Naive Model               | 0.7689   | 0.6684   | -                 | -                   |
+| Logistic Regression       | 0.6818   | 0.6706   | 648.17            | 1.35                |
+| Random Forest (Final)     | 0.7588   | 0.6400   | 696.11            | 0.96                |
+| Gradient-Boosted Tree     | 0.6591   | 0.6714   | 564.15            | 0.76                |
+
+
+Key Insights:
+- Naive Model: The baseline model provides an accuracy of 0.7689 and an F1 score of 0.6684, setting a reference point.
+
+- Logistic Regression: While it has a relatively fast prediction time (1.35s), its performance (accuracy = 0.6818, F1 score = 0.6706) is not as good as the Random Forest model, which indicates limited generalization capability compared to the Random Forest.
+
+- Random Forest: With the final model (100 trees, max depth = 5), it achieves a good balance of accuracy (0.7588) and F1 score (0.6400), showing good performance while maintaining generalization. It has a moderate training time and a quick prediction time.
+
+- Gradient-Boosted Tree: This model achieved perfect training metrics but overfitted, as seen by the much lower test accuracy (0.6591). Despite fast training and prediction times, this model requires tuning to reduce overfitting.
+
+Conclusion:
+
+The **Random Forest** model, with 100 trees and a max depth of 5, performs the best in terms of test accuracy while striking a balance between training and prediction time. While Gradient-Boosted Trees showed high training performance, they suffered from overfitting, making Random Forest the more reliable option for this dataset.
+
+## 7. Installation
 
 Prototype on Google Colab: The code was developed using Google Colab, with Python version 3. Libraries used include PySpark, Pandas, Seaborn, and Matplotlib.
 
-## 6. Project Files Overview
+## 8. Project Files Overview
 
 - Sparkify.ipynb: This notebook contains the exploratory data analysis, data cleaning, and preliminary machine learning model development using a sample of the user activity dataset on a local machine.
 - mini_sparkify_event_data.json: A smaller portion of the user activity data, used for initial testing and analysis.
