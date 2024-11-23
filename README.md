@@ -1,5 +1,6 @@
 # Predicting churns with Spark
 This project predicts churn using PySpark on a sample dataset derived from a larger 12GB dataset of the fictitious music service platform, **“Spartify”**
+> You can check more from the [Medium blogs](https://medium.com/@hideonhp/leveraging-apache-spark-to-predict-customer-churn-in-music-streaming-services-d9bd89a140dd) for more details
 
 ## 1. Motivation
 Customer attrition (or erosion) is a critical business issue because the cost of regaining a lost customer is considerably more than investing in keeping the existing one. Forecasting churn means that a company is able to focus on the specific target customer retention strategy where retention programs are executed even as the churn occurs.
@@ -78,4 +79,4 @@ Prototype on Google Colab: The code was developed using Google Colab, with Pytho
 - mini_sparkify_event_data.json: A smaller portion of the user activity data, used for initial testing and analysis.
 - us census bureau regions and divisions.csv: A CSV file containing data on U.S. census bureau regions and divisions, used for geographical segmentation.
 
-    
+> You can check more from the [Medium blogs](https://medium.com/@hideonhp/leveraging-apache-spark-to-predict-customer-churn-in-music-streaming-services-d9bd89a140dd) for more details
