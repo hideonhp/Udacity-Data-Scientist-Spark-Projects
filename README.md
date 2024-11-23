@@ -65,7 +65,8 @@ Explorations and pilot modeling were conducted using an initial sample of data (
 | **Random Forest**        | 696.1144          | 0.9165      | 0.9227      | **0.6429** | **0.7500** | 0.9643                 |
 | **Gradient-Boosted Tree**| 564.1485          | **1.0**     | **1.0**     | 0.6714     | 0.6591     | **0.7612**             |
 > Visualize feature importance for Gradient-Boosted Tree
-![Visualize Feature Importance](Visualize feature importance.png)
+
+![Visualize Feature Importance](Visualize_feature_importance.png)
 
 ## 5. Installation
 
